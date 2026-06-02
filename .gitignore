@@ -1,0 +1,67 @@
+# ========================
+# Environment & Secrets
+# ========================
+.env
+.env.local
+.env.production
+!.env.example
+
+# ========================
+# Python / Backend
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+venv/
+.venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# ========================
+# Node / Frontend
+# ========================
+node_modules/
+frontend/dist/
+npm-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# ========================
+# IDE & Editors
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# ========================
+# OS Files
+# ========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========================
+# Docker
+# ========================
+# Don't ignore docker-compose.yml or Dockerfiles
+
+# ========================
+# Misc
+# ========================
+*.bak
+*.tmp
+*.temp
