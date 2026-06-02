@@ -32,16 +32,21 @@ app = FastAPI(
     lifespan=lifespan,
     docs_url="/docs",
     redoc_url="/redoc",
+    redirect_slashes=False,
 )
 
 # ---------------------------------------------------------------------------
 # CORS Middleware
 # ---------------------------------------------------------------------------
 origins = [origin.strip() for origin in settings.ALLOWED_ORIGINS.split(",")]
+
+# CORS spec forbids Access-Control-Allow-Origin: * with credentials.
+# When wildcard is used, disable credentials; otherwise reflect the origin.
+allow_all = origins == ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_credentials=not allow_all,
     allow_methods=["*"],
     allow_headers=["*"],
 )

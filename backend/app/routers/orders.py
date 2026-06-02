@@ -10,7 +10,7 @@ from app.schemas.order import OrderCreate, OrderListResponse, OrderResponse
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
 
-@router.get("/", response_model=OrderListResponse)
+@router.get("", response_model=OrderListResponse)
 async def list_orders(
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=500, description="Max records to return"),
@@ -24,7 +24,7 @@ async def list_orders(
     )
 
 
-@router.post("/", response_model=OrderResponse, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=OrderResponse, status_code=status.HTTP_201_CREATED)
 async def create_order(
     order_data: OrderCreate,
     db: AsyncSession = Depends(get_db),

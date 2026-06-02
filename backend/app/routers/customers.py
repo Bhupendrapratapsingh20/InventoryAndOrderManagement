@@ -15,7 +15,7 @@ from app.schemas.customer import (
 router = APIRouter(prefix="/customers", tags=["Customers"])
 
 
-@router.get("/", response_model=CustomerListResponse)
+@router.get("", response_model=CustomerListResponse)
 async def list_customers(
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=500, description="Max records to return"),
@@ -29,7 +29,7 @@ async def list_customers(
     )
 
 
-@router.post("/", response_model=CustomerResponse, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=CustomerResponse, status_code=status.HTTP_201_CREATED)
 async def create_customer(
     customer_data: CustomerCreate,
     db: AsyncSession = Depends(get_db),

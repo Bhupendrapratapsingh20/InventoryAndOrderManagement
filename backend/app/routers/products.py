@@ -15,7 +15,7 @@ from app.schemas.product import (
 router = APIRouter(prefix="/products", tags=["Products"])
 
 
-@router.get("/low-stock/", response_model=list[ProductResponse])
+@router.get("/low-stock", response_model=list[ProductResponse])
 async def list_low_stock_products(
     threshold: int = Query(10, ge=0, description="Stock threshold"),
     db: AsyncSession = Depends(get_db),
@@ -25,7 +25,7 @@ async def list_low_stock_products(
     return [ProductResponse.model_validate(p) for p in products]
 
 
-@router.get("/", response_model=ProductListResponse)
+@router.get("", response_model=ProductListResponse)
 async def list_products(
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=500, description="Max records to return"),
@@ -39,7 +39,7 @@ async def list_products(
     )
 
 
-@router.post("/", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
 async def create_product(
     product_data: ProductCreate,
     db: AsyncSession = Depends(get_db),
